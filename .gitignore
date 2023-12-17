@@ -19,3 +19,6 @@
 
 # Go workspace file
 go.work
+
+# Ignore config file with secrets
+config.yaml
