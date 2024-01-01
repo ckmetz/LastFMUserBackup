@@ -30,7 +30,7 @@ func (a app) Start(params AppConfig) error {
 		return err
 	}
 
-	for len(albumResults.Albums) == 50 {
+	for albumResults.TotalPages >= pageNumber {
 		for _, album := range albumResults.Albums {
 			a.CsvWriterService.WriteLastFMRecords(album.Artist.Name, album.Name, album.PlayCount)
 

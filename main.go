@@ -12,9 +12,12 @@ import (
 func main() {
 	appCfg, _ := app.LoadConfig("dev")
 	client, err := lastFM.NewLastFMClient(appCfg.ApiKey, appCfg.ApiSecret, appCfg.Username, appCfg.Password)
+	if err != nil {
+		println("Error: Cannot initiate client", err.Error())
+	}
 	writer, err := csvWriter.NewWriter("scrobbleAlbums.csv")
 	if err != nil {
-		println("Shit fucked up")
+		println("Error: Cannot Open csv writer", err.Error())
 	}
 	app := app.NewApp(client, writer)
 
